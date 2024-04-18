@@ -3,14 +3,15 @@ import {createSlice , createAsyncThunk} from '@reduxjs/toolkit';
 
 export const getProducts =createAsyncThunk("products/getProducts",
 
-async( _,thunkAPI)=>{
+async( _, thunkAPI)=>{
     const { rejectWithValue} =thunkAPI
     try {
         const response = await fetch("https://fakestoreapi.com/products")
         const data = await response.json();
         return data;
     } catch (error) {
-        return rejectWithValue(error.message)
+        // return rejectWithValue(error.message)
+        console.log("Error in data loading",error.message);
     }
 })
 
@@ -33,8 +34,6 @@ const productSlice = createSlice({
             state.isLoding = false ;
             state.error = null;
             state.products =action.payload;
-    
-            console.log(action.payload);
         });
         builder.addCase(getProducts.rejected,(state,action)=>{
             state.isLoding = false;

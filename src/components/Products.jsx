@@ -2,10 +2,8 @@
 
 
 const Products =(data)=>{
-// eslint-disable-next-line array-callback-return
- console.log("allProducts",data);
-const productsList =allProducts.map((item)=>(
-    <div class="col-12 col-md-4 mb-4">
+const productsList =data.data.map((item)=>(
+    <div class="col-12 col-md-4 mb-4" key={item.id}>
     <div class="card h-100">
         <a href="shop-single.html">
             <img src="assets/img/feature_prod_03.jpg" class="card-img-top" alt="d" />

@@ -5,21 +5,19 @@ import Products from "./Products";
 const Home = () => {
   const { isLoding, products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-    console.log(products);
+
   useEffect(() => {
     dispatch(getProducts());
-  }, [dispatch]);
+  },[dispatch]);
   return (
     <>
       {isLoding ? (
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">Loading...</span>{" "}
         </div>
-      ) :
-      (<Products data={products} />)}
-            
-        
-     
+      ) : (
+        <Products data={products} />
+      )}
 
       {/* <!-- Start Categories of The Month --> */}
       <section class="container py-5">
