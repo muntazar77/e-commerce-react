@@ -10,8 +10,7 @@ async( _, thunkAPI)=>{
         const data = await response.json();
         return data;
     } catch (error) {
-        // return rejectWithValue(error.message)
-        console.log("Error in data loading",error.message);
+        return rejectWithValue(error.message)
     }
 })
 
