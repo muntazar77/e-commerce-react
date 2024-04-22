@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/templatemo.css";
@@ -16,13 +16,11 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <main className="container">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            {/* <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} /> */}
-          </Switch>
-        </main>
+          <Routes>
+            <Route exact path="/" element={<Home/>} />
+            <Route path="/about" element={<About/>} />
+            <Route path="/contact" element={<Contact/>} />
+          </Routes>
         <Footer />
       </div>
     </Router>
