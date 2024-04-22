@@ -1,22 +1,27 @@
 import { getProducts } from "../store/prodectSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import Products from "./Products";
+import Products from "../components/Products";
 const Home = () => {
   const { isLoding, products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  
+   useEffect(() => {
+     dispatch(getProducts());
+   },[dispatch]);
 
-  useEffect(() => {
-    dispatch(getProducts());
-  },[dispatch]);
-  return (
+ 
+
+   return (
     <>
       {isLoding ? (
         <div class="spinner-border text-primary" role="status">
           <span class="visually-hidden">Loading...</span>{" "}
         </div>
       ) : (
-        <Products data={products} />
+        <Products data={products.data} />
+           
+        
       )}
 
       {/* <!-- Start Categories of The Month --> */}
