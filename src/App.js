@@ -8,6 +8,9 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Category from './pages/Category';
+import ShopSingle from './pages/ShopSingle';
+
 
 
 
@@ -20,6 +23,9 @@ function App() {
             <Route exact path="/" element={<Home/>} />
             <Route path="/about" element={<About/>} />
             <Route path="/contact" element={<Contact/>} />
+            <Route path="/Categories" element={<Category/>} />
+            <Route path="/shop/:id" element={<ShopSingle/>} />
+
           </Routes>
         <Footer />
       </div>

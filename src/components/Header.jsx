@@ -1,8 +1,6 @@
 import React from 'react';
-// import { Breadcrumb, Layout, Menu, Button, Input } from 'antd';
 import { UserOutlined, SearchOutlined } from '@ant-design/icons';
-// const { Header, Content, Footer } = Layout;
-
+import { Link } from 'react-router-dom';
 const App = () => {
   return (
     <>
@@ -13,15 +11,15 @@ const App = () => {
             <div class="w-100 d-flex justify-content-between">
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                    <Link class="navbar-sm-brand text-light text-decoration-none" to="mailto:info@company.com">info@company.com</Link>
                     <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+                    <Link class="navbar-sm-brand text-light text-decoration-none" to="tel:010-020-0340">010-020-0340</Link>
                 </div>
                 <div>
-                    <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
-                    <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-sm fa-fw"></i></a>
+                    <Link class="text-light" to="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></Link>
+                    <Link class="text-light" to="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></Link>
+                    <Link class="text-light" to="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></Link>
+                    <Link class="text-light" to="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-sm fa-fw"></i></Link>
                 </div>
             </div>
         </div>
@@ -34,9 +32,9 @@ const App = () => {
     <div class="container">
         <div class="row w-100 d-flex justify-content-between align-items-center">
             <div class="col-lg-2">
-                <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
+                <Link class="navbar-brand text-success logo h1 align-self-center" to="/">
                     Zay
-                </a>
+                </Link>
             </div>
             <div class="col-lg-8">
         
@@ -44,16 +42,16 @@ const App = () => {
                 <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex " id="templatemo_main_nav">
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home</a>
+                                <Link class="nav-link" to="/">Home</Link>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">About</a>
+                                <Link class="nav-link" to="/about">About</Link>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="shop.html">Shop</a>
+                                <Link class="nav-link" to="/categories">Categories</Link>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
+                                <Link class="nav-link" to="/contact">Contact</Link>
                             </li>
                         </ul>
                 </div>

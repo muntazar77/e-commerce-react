@@ -43,6 +43,12 @@
       "relation": "manyToMany",
       "target": "api::categroy.categroy",
       "inversedBy": "products"
+    },
+    "rating": {
+      "type": "integer",
+      "max": 5,
+      "min": 0,
+      "default": 0
     }
   }
 }
