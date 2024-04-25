@@ -24,6 +24,20 @@ async(id,thunkAPI)=>{
         return rejectWithValue(error.message)
     }
 })
+//filter products
+export const filterProducts = createAsyncThunk("products/filterProducts",
+async(filter,thunkAPI)=>{
+    const {rejectWithValue} =thunkAPI;
+    try {
+        const response = await fetch(`http://localhost:1337/api/products?category=${filter}`)
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return rejectWithValue(error.message)
+    }
+}
+)
+
 
 const initialState ={
     products:[],
