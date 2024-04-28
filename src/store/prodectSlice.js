@@ -29,7 +29,7 @@ export const filterProducts = createAsyncThunk("products/filterProducts",
 async(filter,thunkAPI)=>{
     const {rejectWithValue} =thunkAPI;
     try {
-        const response = await fetch(`http://localhost:1337/api/products?category=${filter}`)
+        const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[categroys][id][$eq]=${filter}`)
         const data = await response.json();
         return data;
     } catch (error) {
@@ -43,6 +43,7 @@ const initialState ={
     products:[],
     singleProduct:null,
     isLoding:false,
+    filterProducts:[],
     error:null
 }
 
@@ -86,6 +87,24 @@ const productSlice = createSlice({
         builder.addCase(getSingleProduct.pending,(state,action)=>{
             state.isLoding = true;
         });
+
+
+
+        //To filter products
+        builder.addCase(filterProducts.fulfilled,(state,action)=>{
+            state.isLoding = false ;
+            state.error = null;
+            state.filterProducts =action.payload;
+        })
+        builder.addCase(filterProducts.rejected,(state,action)=>{
+            state.isLoding = false;
+            state.error =action.payload;
+             console.log("Error in data loading",action.payload);
+        });
+        builder.addCase(filterProducts.pending,(state,action)=>{
+            state.isLoding = true;
+        });
+
     }
         
     

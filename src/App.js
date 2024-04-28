@@ -10,6 +10,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Category from './pages/Category';
 import ShopSingle from './pages/ShopSingle';
+import Shop from './pages/Shop';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Header />
           <Routes>
             <Route exact path="/" element={<Home/>} />
+            <Route path="/shop" element={<Shop/>} />
             <Route path="/about" element={<About/>} />
             <Route path="/contact" element={<Contact/>} />
             <Route path="/Categories" element={<Category/>} />

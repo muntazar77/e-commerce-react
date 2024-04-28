@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { FaStar,FaRegHeart ,FaEye ,FaCartPlus} from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 
 const Products = ({ data }) => { 
@@ -6,41 +7,71 @@ const Products = ({ data }) => {
   if (!data || !Array.isArray(data)) {
     return <div>Loading...</div>; // or return a default value or error component
   }
-
+  //this function is for show rating
+  const rating = (item) => {
+    const ratingList = Array(5).fill().map((_, index) => {
+      if (index < item) {
+        return <FaStar className="text-warning" />;
+      } else {
+        return <FaStar className="text-muted" />;
+      }
+    });
+    return ratingList;
+  };
 
   const productsList = data.map((item) => (
-    <div class="col-12 col-md-4 mb-4" key={item.id}>
+    <div className="col-12 col-md-4 mb-4" key={item.id}>
         {console.log(item.attributes)} 
-      <div class="card h-100">
+      <div className="card h-100">
         <Link to={`/shop/${item.id}`}>
           <img
             src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
-            class="card-img-top"
+            className="card-img-top"
             alt="d"
             style={{ height: "414px" }}
           />
         </Link>
-        <div class="card-body">
-          <ul class="list-unstyled d-flex justify-content-between">
+        <div className="card-body">
+          <ul className="list-unstyled d-flex justify-content-between">
             <li>
-              <i class="text-warning fa fa-star"></i>
-              <i class="text-warning fa fa-star"></i>
-              <i class="text-warning fa fa-star"></i>
-              <i class="text-warning fa fa-star"></i>
-              <i class="text-warning fa fa-star"></i>
+              <i className="text-warning fa fa-star"></i>
+              <i className="text-warning fa fa-star"></i>
+              <i className="text-warning fa fa-star"></i>
+              <i className="text-warning fa fa-star"></i>
+              <i className="text-warning fa fa-star"></i>
             </li>
-            <li class="text-muted text-right">$ {item.attributes.price}</li>
+            <li className="text-muted text-right">$ {item.attributes.price}</li>
           </ul>
           <Link
             to={`/shop/${item.id}`}
-            class="h2 text-decoration-none text-dark"
+            className="h2 text-decoration-none text-dark"
           >
-            {item.attributes.title.substring(0, 20)}..
+            {item.attributes.title.substring(0, 23)}..
           </Link>
-          <p class="card-text">
+          <p className="card-text">
           {item.attributes.description.substring(0,100)}..
           </p>
-          <p class="text-muted">Reviews (74)</p>
+          <ul className="list-unstyled d-flex justify-content-center m-1">
+                        <li>
+                          {rating(item.attributes.rating)}
+                          <Link
+                              className="btn btn-success text-white m-2 "
+                              to={`/shop/${item.id}`}
+                            >
+                              <FaEye /> </Link>
+                              <Link
+                              className="btn btn-success text-white m-2 "
+                              to={`/shop/${item.id}`}
+                            >
+                              <FaCartPlus />
+                            </Link>
+                        </li>
+                       
+                       
+                          <li>
+                           
+                          </li>
+                      </ul>
         </div>
       </div>
     </div>
@@ -49,18 +80,18 @@ const Products = ({ data }) => {
   return (
     <>
       {/* <!-- Start Featured Product --> */}
-      <section class="bg-light">
-        <div class="container py-5">
-          <div class="row text-center py-3">
-            <div class="col-lg-6 m-auto">
-              <h1 class="h1">Featured Product</h1>
+      <section className="bg-light">
+        <div className="container py-5">
+          <div className="row text-center py-3">
+            <div className="col-lg-6 m-auto">
+              <h1 className="h1">Featured Product</h1>
               <p>
                 Reprehenderit in voluptate velit esse cillum dolore eu fugiat
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident.
               </p>
             </div>
           </div>
-          <div class="row">{productsList}</div>
+          <div className="row">{productsList}</div>
         </div>
       </section>
       {/* <!-- End Featured Product --> */}

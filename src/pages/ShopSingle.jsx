@@ -1,7 +1,8 @@
-import { Link, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, Fragment } from "react";
 import { getSingleProduct } from "../store/prodectSlice";
+import { FaStar } from "react-icons/fa";
 
 const ShopSingle = () => {
   const { singleProduct } = useSelector((state) => state.products);
@@ -15,7 +16,18 @@ const ShopSingle = () => {
   const data = singleProduct?.data.attributes;
   //  const data =singleProduct
 
-  console.log(data);
+   //this function is for show rating
+   const rating = (item) => {
+    const ratingList = Array(5).fill().map((_, index) => {
+      if (index < item) {
+        return <FaStar className="text-warning" />;
+      } else {
+        return <FaStar className="text-muted" />;
+      }
+    });
+    return ratingList;
+  };
+
   if (!data && (data === undefined || data === "")) {
     return (
       <div class="text-center">
@@ -54,7 +66,7 @@ const ShopSingle = () => {
                       <i class="fa fa-star text-warning"></i>
                       <i class="fa fa-star text-secondary"></i>
                       <span class="list-inline-item text-dark">
-                        Rating {data.rating ? data.rating : "0"}
+                        Rating {rating(data.rating)}
                       </span>
                     </p>
                     <ul class="list-inline">
