@@ -1,4 +1,4 @@
-import { FaStar,FaRegHeart ,FaEye ,FaCartPlus} from "react-icons/fa";
+import { FaStar,FaEye ,FaCartPlus} from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 

@@ -10,6 +10,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Category from './pages/Category';
 import ShopSingle from './pages/ShopSingle';
+import Login from './pages/Login';
 import Shop from './pages/Shop';
 
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/contact" element={<Contact/>} />
             <Route path="/Categories" element={<Category/>} />
             <Route path="/shop/:id" element={<ShopSingle/>} />
+            <Route path="/login" element={<Login/>} />
 
           </Routes>
         <Footer />

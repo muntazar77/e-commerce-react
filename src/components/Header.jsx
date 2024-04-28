@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserOutlined, SearchOutlined } from '@ant-design/icons';
+import { FaUser,FaSearch ,FaCartArrowDown} from "react-icons/fa";
 import { Link } from 'react-router-dom';
 const App = () => {
   return (
@@ -33,11 +33,14 @@ const App = () => {
         <div className="row w-100 d-flex justify-content-between align-items-center">
             <div className="col-lg-2">
                 <Link className="navbar-brand text-success logo h1 align-self-center" to="/">
-                    Zay
+                    Rens
                 </Link>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             </div>
-            <div className="col-lg-8">
-        
+            <div className="col-lg-9">
+          
 
                 <div className="align-self-center collapse navbar-collapse flex-fill  d-lg-flex " id="templatemo_main_nav">
                         <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
@@ -59,26 +62,21 @@ const App = () => {
                         </ul>
                 </div>
             </div>
+      
 
-            <div className="col-lg-2" >
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_search_nav" aria-controls="templatemo_search_nav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse search" id="templatemo_search_nav">
-                            <div className="input-group">
-                                <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
-                                <button className="input-group-text bg-primary text-light" type="submit" id="button-addon2">
-                                  <SearchOutlined / >
-                                </button>
-                                {/* button for login */}
-                                <button className="input-group-text bg-primary text-light mr-3" type="submit" id="button-addon2">
-                                  <UserOutlined / >
-                                </button>
-                            </div>
-                            </div>
-                            
-
-            </div>
+            <div class=" col-lg-1">
+                 
+                    <div className='d-flex justify-content-between'>
+                    <Link  class="mr-3 ml-3 nav-icon position-relative text-decoration-none" href="#">
+                        <FaCartArrowDown className="text-dark " />
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                    </Link>
+                    <Link to={"/login"} class="nav-icon position-relative text-decoration-none" href="#">
+                        <FaUser className='text-dark ' />
+                    </Link>
+                    </div>
+                </div>
+            
         </div>
     </div>
 </nav>
