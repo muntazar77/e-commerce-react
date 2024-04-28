@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/templatemo.css";
 import "./css/custom.css";
 import Header from './components/Header';
+
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -16,25 +16,35 @@ import Shop from './pages/Shop';
 
 
 
+
+const Main = () => {
+  const location = useLocation();
+  console.log(location);
+
+  return (
+    <>
+      {location.pathname !== '/login' && <Header />}
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/Categories" element={<Category />} />
+        <Route path="/shop/:id" element={<ShopSingle />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+      {location.pathname !== '/login' && <Footer />}
+    </>
+  );
+};
+
 function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
-          <Routes>
-            <Route exact path="/" element={<Home/>} />
-            <Route path="/shop" element={<Shop/>} />
-            <Route path="/about" element={<About/>} />
-            <Route path="/contact" element={<Contact/>} />
-            <Route path="/Categories" element={<Category/>} />
-            <Route path="/shop/:id" element={<ShopSingle/>} />
-            <Route path="/login" element={<Login/>} />
-
-          </Routes>
-        <Footer />
+        <Main />
       </div>
     </Router>
   );
 }
-
 export default App;
