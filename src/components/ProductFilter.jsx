@@ -75,27 +75,28 @@ const ProductFilter = ({ categories, products }) => {
                   <li className="list-inline-item">
                     <Link
                       className="h3 text-dark text-decoration-none mr-3"
-                      href="#"
+                      onClick={() => handleClick("all")}
                     >
                       All
                     </Link>
                   </li>
                   <li className="list-inline-item">
                     <Link
-                      className="h3 text-dark text-decoration-none mr-3"
-                      href="#"
+                      className="h3 text-dark text-decoration-none"
+                      onClick={() => handleClick("wemen")}
                     >
-                      Men's
+                      Women's
                     </Link>
                   </li>
                   <li className="list-inline-item">
                     <Link
                       className="h3 text-dark text-decoration-none"
-                      href="#"
+                      onClick={() => handleClick("men")}
                     >
-                      Women's
+                      Men
                     </Link>
                   </li>
+                  
                 </ul>
               </div>
               <div className="col-md-6 pb-4">
@@ -108,7 +109,6 @@ const ProductFilter = ({ categories, products }) => {
                 </div>
               </div>
             </div>
-            {/* for show the products */}
             {/* {productsList}  */}
 
             <div ref={gridRef} className="grid row">
