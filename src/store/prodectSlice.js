@@ -1,6 +1,7 @@
 
 import {createSlice , createAsyncThunk} from '@reduxjs/toolkit';
 
+//TO get all products
 export const getProducts =createAsyncThunk("products/getProducts",
 async( _, thunkAPI)=>{
     const { rejectWithValue} =thunkAPI
@@ -13,6 +14,7 @@ async( _, thunkAPI)=>{
     }
 })
 
+//To get single product
 export const getSingleProduct = createAsyncThunk("products/getSingleProduct",
 async(id,thunkAPI)=>{
     const {rejectWithValue} =thunkAPI;
@@ -44,7 +46,8 @@ const initialState ={
     singleProduct:null,
     isLoding:false,
     filterProducts:[],
-    error:null
+    error:null,
+    addProducts:[],
 }
 
 
@@ -52,6 +55,12 @@ const productSlice = createSlice({
 
     name:'products',
     initialState,
+    reducers:{
+        //To add product
+        addProduct:(state,action)=>{
+            state.addProducts = action.payload;
+        }
+    },
      
     extraReducers:(builder)=>{
         //To Get all products
@@ -111,5 +120,8 @@ const productSlice = createSlice({
   
 
 })
+// Remove the unused assignment of 'addProduct' variable
+// const addProduct = productSlice.actions;
 
+export const {addProduct} = productSlice.actions;
 export default productSlice.reducer;

@@ -1,7 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
 import { FaUser,FaSearch ,FaCartArrowDown} from "react-icons/fa";
 import { Link } from 'react-router-dom';
-const App = () => {
+const Header = () => {
+    const [cartItems, setCartItems] = useState([
+        // This is just a placeholder. Replace it with your actual cart items.
+        { id: 1, name: 'Product 1' },
+        { id: 2, name: 'Product 2' },
+        { id: 3, name: 'Product 3' },
+      ]);
   return (
     <>
     
@@ -68,7 +75,17 @@ const App = () => {
                  
                     <div className='d-flex justify-content-between'>
                     <Link  class="mr-3 ml-3 nav-icon position-relative text-decoration-none" href="#">
-                        <FaCartArrowDown className="text-dark " />
+                        {/* <FaCartArrowDown className="text-dark " /> */}
+                        <FaCartArrowDown className="cart-icon">
+                          
+                        </FaCartArrowDown>
+                        <div className="cart-dropdown">
+                            {cartItems.map((item) => (
+                                <div key={item.id} className="cart-item">
+                                {item.name}
+                                </div>
+                            ))}
+                            </div>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </Link>
                     <Link to={"/login"} class="nav-icon position-relative text-decoration-none" href="#">
@@ -86,4 +103,4 @@ const App = () => {
   )
 };
 
-export default App;
+export default Header;
