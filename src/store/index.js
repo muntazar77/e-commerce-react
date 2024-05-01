@@ -8,6 +8,7 @@ export default configureStore({
     reducer:{
         products,
         categories,
+        
 
     }
 })

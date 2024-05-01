@@ -1,14 +1,11 @@
 import React from 'react';
-import { useState } from 'react';
+import "../index.css";
 import { FaUser,FaSearch ,FaCartArrowDown} from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import {  useSelector } from 'react-redux';
+import { NavLink ,Link } from 'react-router-dom';
 const Header = () => {
-    const [cartItems, setCartItems] = useState([
-        // This is just a placeholder. Replace it with your actual cart items.
-        { id: 1, name: 'Product 1' },
-        { id: 2, name: 'Product 2' },
-        { id: 3, name: 'Product 3' },
-      ]);
+
+      const {cartProductIds} = useSelector((state) => state.products);
   return (
     <>
     
@@ -18,15 +15,15 @@ const Header = () => {
             <div className="w-100 d-flex justify-content-between">
                 <div>
                     <i className="fa fa-envelope mx-2"></i>
-                    <Link className="navbar-sm-brand text-light text-decoration-none" to="mailto:info@company.com">info@company.com</Link>
+                    <NavLink className="navbar-sm-brand text-light text-decoration-none" to="mailto:info@company.com">info@company.com</NavLink>
                     <i className="fa fa-phone mx-2"></i>
-                    <Link className="navbar-sm-brand text-light text-decoration-none" to="tel:010-020-0340">010-020-0340</Link>
+                    <NavLink className="navbar-sm-brand text-light text-decoration-none" to="tel:010-020-0340">010-020-0340</NavLink>
                 </div>
                 <div>
-                    <Link className="text-light" to="https://fb.com/templatemo" target="_blank" rel="sponsored"><i className="fab fa-facebook-f fa-sm fa-fw me-2"></i></Link>
-                    <Link className="text-light" to="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram fa-sm fa-fw me-2"></i></Link>
-                    <Link className="text-light" to="https://twitter.com/" target="_blank"><i className="fab fa-twitter fa-sm fa-fw me-2"></i></Link>
-                    <Link className="text-light" to="https://www.linkedin.com/" target="_blank"><i className="fab fa-linkedin fa-sm fa-fw"></i></Link>
+                    <NavLink className="text-light" to="https://fb.com/templatemo" target="_blank" rel="sponsored"><i className="fab fa-facebook-f fa-sm fa-fw me-2"></i></NavLink>
+                    <NavLink className="text-light" to="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram fa-sm fa-fw me-2"></i></NavLink>
+                    <NavLink className="text-light" to="https://twitter.com/" target="_blank"><i className="fab fa-twitter fa-sm fa-fw me-2"></i></NavLink>
+                    <NavLink className="text-light" to="https://www.linkedin.com/" target="_blank"><i className="fab fa-linkedin fa-sm fa-fw"></i></NavLink>
                 </div>
             </div>
         </div>
@@ -52,19 +49,23 @@ const Header = () => {
                 <div className="align-self-center collapse navbar-collapse flex-fill  d-lg-flex " id="templatemo_main_nav">
                         <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Home</Link>
+
+                                <NavLink className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} to="/">Home</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/shop">Shop</Link>
+                                <NavLink  to="/shop" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link ')} >Shop</NavLink>
+
                             </li> 
                             <li className="nav-item">
-                                <Link className="nav-link" to="/about">About</Link>
+                                <NavLink  to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link ')} >About</NavLink>
+
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/categories">Categories</Link>
+                                <NavLink  to="/categories" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link ')} >Categories</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/contact">Contact</Link>
+                            <NavLink  to="/contact" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link ')} >Contact</NavLink>
+
                             </li>
                         </ul>
                 </div>
@@ -74,23 +75,13 @@ const Header = () => {
             <div class=" col-lg-1">
                  
                     <div className='d-flex justify-content-between'>
-                    <Link  class="mr-3 ml-3 nav-icon position-relative text-decoration-none" href="#">
-                        {/* <FaCartArrowDown className="text-dark " /> */}
-                        <FaCartArrowDown className="cart-icon">
-                          
-                        </FaCartArrowDown>
-                        <div className="cart-dropdown">
-                            {cartItems.map((item) => (
-                                <div key={item.id} className="cart-item">
-                                {item.name}
-                                </div>
-                            ))}
-                            </div>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                    <Link  class="mr-3 ml-3 nav-icon position-relative text-decoration-none text-dark">
+                        <FaCartArrowDown />
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{cartProductIds.length}</span>
                     </Link>
-                    <Link to={"/login"} class="nav-icon position-relative text-decoration-none" href="#">
+                    <NavLink to={"/login"} class="nav-icon position-relative text-decoration-none">
                         <FaUser className='text-dark ' />
-                    </Link>
+                    </NavLink>
                     </div>
                 </div>
             

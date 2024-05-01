@@ -47,7 +47,7 @@ const initialState ={
     isLoding:false,
     filterProducts:[],
     error:null,
-    addProducts:[],
+    cartProductIds:[],
 }
 
 
@@ -57,8 +57,18 @@ const productSlice = createSlice({
     initialState,
     reducers:{
         //To add product
-        addProduct:(state,action)=>{
-            state.addProducts = action.payload;
+        addToCart:(state,action)=>{
+             state.cartProductIds.push(action.payload);
+            //  state.cartProductIds =[action.payload, ...state.cartProductIds]
+
+         
+        },
+        removeFromCart:(state, action)=>{
+            const index =state.cartProductIds.indexOf(action.payload)
+            state.cartProductIds.splice(index,1)
+        },
+        clearAllItems:(state)=>{
+            state.cartProductIds = []
         }
     },
      
@@ -123,5 +133,5 @@ const productSlice = createSlice({
 // Remove the unused assignment of 'addProduct' variable
 // const addProduct = productSlice.actions;
 
-export const {addProduct} = productSlice.actions;
+export const {addToCart ,removeFromCart} = productSlice.actions;
 export default productSlice.reducer;

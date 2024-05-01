@@ -1,14 +1,29 @@
 import React, { useEffect, useRef } from "react";
 import Isotope from "isotope-layout";
 // import { gsap } from "gsap";
-import imagesLoaded from "imagesloaded";
-import { FaEye, FaStar, FaRegHeart, FaCartPlus } from "react-icons/fa";
-
+import { IoRemoveCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import imagesLoaded from "imagesloaded";
+import { useDispatch, useSelector } from "react-redux";
+import { FaEye, FaStar, FaRegHeart, FaCartPlus } from "react-icons/fa";
+import { addToCart, removeFromCart } from "../store/prodectSlice";
+
 const ProductFilter = ({ categories, products }) => {
   const gridRef = useRef(null);
-
   const isoRef = useRef(null);
+
+  const { cartProductIds } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  console.log(cartProductIds);
+
+  //  const handleAddToCart = (id,title ) => {
+  //    console.log(id);
+  //    dispatch(addToCart({
+  //      id,
+  //     title
+  //   }));
+
+  //  }
 
   useEffect(() => {
     imagesLoaded(gridRef.current, function () {
@@ -21,13 +36,15 @@ const ProductFilter = ({ categories, products }) => {
 
   //this function is for show rating
   const rating = (item) => {
-    const ratingList = Array(5).fill().map((_, index) => {
-      if (index < item) {
-        return <FaStar className="text-warning" />;
-      } else {
-        return <FaStar className="text-muted" />;
-      }
-    });
+    const ratingList = Array(5)
+      .fill()
+      .map((_, index) => {
+        if (index < item) {
+          return <FaStar className="text-warning" />;
+        } else {
+          return <FaStar className="text-muted" />;
+        }
+      });
     return ratingList;
   };
 
@@ -46,7 +63,8 @@ const ProductFilter = ({ categories, products }) => {
           className={`btn btn-dark m-2`}
           onClick={() => handleClick(`${category.attributes.name}`)}
         >
-          {category.attributes.name} ({category.attributes.products.data.length})
+          {category.attributes.name} ({category.attributes.products.data.length}
+          )
         </button>
       </div>
     ); // Add a return statement here
@@ -96,7 +114,6 @@ const ProductFilter = ({ categories, products }) => {
                       Men
                     </Link>
                   </li>
-                  
                 </ul>
               </div>
               <div className="col-md-6 pb-4">
@@ -147,12 +164,20 @@ const ProductFilter = ({ categories, products }) => {
                             </Link>
                           </li>
                           <li>
-                            <Link
-                              className="btn btn-success text-white mt-2"
-                              to={`/shop/${item.id}`}
-                            >
-                              <FaCartPlus />
-                            </Link>
+                            {!cartProductIds.includes(item.id) && (
+                              <Link className="btn btn-success text-white mt-2">
+                                <FaCartPlus
+                                  onClick={() => dispatch(addToCart(item.id))}
+                                />
+                              </Link>
+                            )}
+                            {cartProductIds.includes(item.id) && (
+                              <Link className="btn btn-success text-white mt-2">
+                                <IoRemoveCircle
+                                  onClick={() => dispatch(removeFromCart(item.id))}
+                                />
+                              </Link>
+                            )}
                           </li>
                         </ul>
                       </div>
@@ -169,10 +194,7 @@ const ProductFilter = ({ categories, products }) => {
                         {item.attributes.categroys.data[0].attributes.name})
                       </p>
                       <ul className="list-unstyled d-flex justify-content-center mb-1">
-                        <li>
-                      
-                          {rating(item.attributes.rating)}
-                        </li>
+                        <li>{rating(item.attributes.rating)}</li>
                       </ul>
                       <p className="text-center mb-0">
                         ${item.attributes.price}

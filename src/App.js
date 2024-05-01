@@ -19,7 +19,6 @@ import Shop from './pages/Shop';
 
 const Main = () => {
   const location = useLocation();
-  console.log(location);
 
   return (
     <>
