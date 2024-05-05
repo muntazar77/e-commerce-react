@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Isotope from "isotope-layout";
 // import { gsap } from "gsap";
 import { IoRemoveCircle } from "react-icons/io5";
