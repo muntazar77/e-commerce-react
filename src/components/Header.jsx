@@ -75,7 +75,7 @@ const Header = () => {
             <div class=" col-lg-1">
                  
                     <div className='d-flex justify-content-between'>
-                    <Link  class="mr-3 ml-3 nav-icon position-relative text-decoration-none text-dark">
+                    <Link to={"/checkout"}  class="mr-3 ml-3 nav-icon position-relative text-decoration-none text-dark">
                         <FaCartArrowDown />
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{cartProductIds.length}</span>
                     </Link>

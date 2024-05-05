@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Isotope from "isotope-layout";
 // import { gsap } from "gsap";
 import { IoRemoveCircle } from "react-icons/io5";
@@ -12,18 +12,16 @@ const ProductFilter = ({ categories, products }) => {
   const gridRef = useRef(null);
   const isoRef = useRef(null);
 
+
+
+
+  
+
+
+   
   const { cartProductIds } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  console.log(cartProductIds);
 
-  //  const handleAddToCart = (id,title ) => {
-  //    console.log(id);
-  //    dispatch(addToCart({
-  //      id,
-  //     title
-  //   }));
-
-  //  }
 
   useEffect(() => {
     imagesLoaded(gridRef.current, function () {
@@ -35,12 +33,12 @@ const ProductFilter = ({ categories, products }) => {
   }, [products]);
 
   //this function is for show rating
-  const rating = (item) => {
+  const rating = (item ,id) => {
     const ratingList = Array(5)
       .fill()
       .map((_, index) => {
         if (index < item) {
-          return <FaStar className="text-warning" />;
+          return <FaStar className="text-warning"  />;
         } else {
           return <FaStar className="text-muted" />;
         }
@@ -164,17 +162,18 @@ const ProductFilter = ({ categories, products }) => {
                             </Link>
                           </li>
                           <li>
-                            {!cartProductIds.includes(item.id) && (
-                              <Link className="btn btn-success text-white mt-2">
+
+                            {!cartProductIds.includes(item) && (
+                              <Link className="btn btn-success text-white mt-2"   onClick={() => dispatch(addToCart(item))}> 
                                 <FaCartPlus
-                                  onClick={() => dispatch(addToCart(item.id))}
+                               
                                 />
                               </Link>
                             )}
-                            {cartProductIds.includes(item.id) && (
-                              <Link className="btn btn-success text-white mt-2">
+                            {cartProductIds.includes(item) && (
+                              <Link className="btn btn-success text-white mt-2"  onClick={() => dispatch(removeFromCart(item))}>
                                 <IoRemoveCircle
-                                  onClick={() => dispatch(removeFromCart(item.id))}
+                                 
                                 />
                               </Link>
                             )}
@@ -194,7 +193,7 @@ const ProductFilter = ({ categories, products }) => {
                         {item.attributes.categroys.data[0].attributes.name})
                       </p>
                       <ul className="list-unstyled d-flex justify-content-center mb-1">
-                        <li>{rating(item.attributes.rating)}</li>
+                        <li>{rating(item.attributes.rating , item.id)}</li>
                       </ul>
                       <p className="text-center mb-0">
                         ${item.attributes.price}

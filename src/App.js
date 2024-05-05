@@ -12,6 +12,7 @@ import Category from './pages/Category';
 import ShopSingle from './pages/ShopSingle';
 import Login from './pages/Login';
 import Shop from './pages/Shop';
+import Checkout from './pages/Checkout';
 
 
 
@@ -30,6 +31,7 @@ const Main = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/Categories" element={<Category />} />
         <Route path="/shop/:id" element={<ShopSingle />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
       </Routes>
       {location.pathname !== '/login' && <Footer />}

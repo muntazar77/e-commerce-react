@@ -1,12 +1,19 @@
 import { FaStar,FaEye ,FaCartPlus} from "react-icons/fa";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { IoRemoveCircle } from "react-icons/io5";
+import { addToCart, removeFromCart } from "../store/prodectSlice";
 
 const Products = ({ data }) => { 
+
+  const { cartProductIds } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
   // Check if data is defined and is an array
   if (!data || !Array.isArray(data)) {
     return <div>Loading...</div>; // or return a default value or error component
   }
+
   //this function is for show rating
   const rating = (item) => {
     const ratingList = Array(5).fill().map((_, index) => {
@@ -34,11 +41,7 @@ const Products = ({ data }) => {
         <div className="card-body">
           <ul className="list-unstyled d-flex justify-content-between">
             <li>
-              <i className="text-warning fa fa-star"></i>
-              <i className="text-warning fa fa-star"></i>
-              <i className="text-warning fa fa-star"></i>
-              <i className="text-warning fa fa-star"></i>
-              <i className="text-warning fa fa-star"></i>
+            {rating(item.attributes.rating)}
             </li>
             <li className="text-muted text-right">$ {item.attributes.price}</li>
           </ul>
@@ -53,18 +56,30 @@ const Products = ({ data }) => {
           </p>
           <ul className="list-unstyled d-flex justify-content-center m-1">
                         <li>
-                          {rating(item.attributes.rating)}
+                        
                           <Link
                               className="btn btn-success text-white m-2 "
                               to={`/shop/${item.id}`}
                             >
                               <FaEye /> </Link>
-                              <Link
-                              className="btn btn-success text-white m-2 "
-                              to={`/shop/${item.id}`}
-                            >
-                              <FaCartPlus />
-                            </Link>
+                            
+                          {!cartProductIds.includes(item) && (
+                              <Link className="btn btn-success text-white mt-2"   onClick={() => dispatch(addToCart(item))}> 
+                                <FaCartPlus
+                               
+                                />
+                              </Link>
+                            )}
+                            {cartProductIds.includes(item) && (
+                              <Link className="btn btn-success text-white mt-2"  onClick={() => dispatch(removeFromCart(item))}>
+                                <IoRemoveCircle
+                                 
+                                />
+                              </Link>
+                            )}
+                          
+
+                          
                         </li>
                        
                        

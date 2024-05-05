@@ -58,8 +58,9 @@ const productSlice = createSlice({
     reducers:{
         //To add product
         addToCart:(state,action)=>{
-             state.cartProductIds.push(action.payload);
-            //  state.cartProductIds =[action.payload, ...state.cartProductIds]
+            
+              const product =state.cartProductIds.find(item=>item.id === action.payload.id)
+            ! product && state.cartProductIds.push(action.payload);
 
          
         },
@@ -130,8 +131,7 @@ const productSlice = createSlice({
   
 
 })
-// Remove the unused assignment of 'addProduct' variable
-// const addProduct = productSlice.actions;
 
-export const {addToCart ,removeFromCart} = productSlice.actions;
+
+export const {addToCart ,removeFromCart ,clearAllItems} = productSlice.actions;
 export default productSlice.reducer;

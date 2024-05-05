@@ -1,6 +1,10 @@
 body{margin-top:20px;
     background:#eee;
 }
+.checkout{
+    padding:50px;
+
+}
 h3 {
     font-size: 16px;
 }
@@ -90,4 +94,10 @@ table.shoping-cart-table tr td:last-child {
   font-size: 90%;
   background: #ffffff;
   padding: 10px 15px;
+}
+.no-items{
+    text-align: center;
+    padding: 60px;
+    border: 1px solid #e7eaec;
+    margin-top: 20px;
 }
