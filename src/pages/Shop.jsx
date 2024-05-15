@@ -1,6 +1,6 @@
 import { FaEye ,FaStar ,FaRegHeart ,FaCartPlus} from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useEffect, useRef } from 'react';
+import { useEffect,  } from 'react';
 import { useDispatch , useSelector } from "react-redux";
 //to get the products and categories from the store
 import { getProducts } from "../store/prodectSlice";

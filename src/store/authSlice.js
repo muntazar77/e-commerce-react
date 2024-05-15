@@ -3,13 +3,24 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const loginUser = createAsyncThunk('auth/loginUser', async (userData) => {
-    const response = await axios.post('http://localhost:1337/auth/local', userData);
+    const response = await axios.post('http://localhost:1337/api/auth/local', userData);
     return response.data;
 });
+
+// initialize userToken from local storage
+const userData = localStorage.getItem('userData')
+  ? localStorage.getItem('userData')
+  : null
+  const isLogin = localStorage.getItem('isLogin')
+  ? localStorage.getItem('isLogin')
+  : null
+
 const initialState = 
 {
- user: null,
- token: null 
+ userData ,
+//  userToken,
+isLogin,
+ 
 }
 
 
@@ -18,24 +29,32 @@ const initialState =
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
- 
+    reducers: {
+        removeUser: (state) => {
+          state.userData = null;
+          localStorage.removeItem('userData');
+          localStorage.removeItem('isLogin',false);
+        },
+      },
     extraReducers:(builder)=>{
         //To Get all products
         builder.addCase(loginUser.fulfilled,(state,action)=>{
-            state.user = action.payload.user;
-            state.token = action.payload.jwt;
-            console.log(state.token);
+            state.userData = action.payload;
+            localStorage.setItem('userData',JSON.stringify(action.payload));
+            localStorage.setItem('isLogin',true);
         });
-        // builder.addCase(loginUser.rejected,(state,action)=>{
-        //     state.isLoding = false;
-        //     state.error =action.payload;
-        //      console.log("Error in data loading",action.payload);
-        // });
-        // builder.addCase(loginUser.pending,(state,action)=>{
-        //     state.isLoding = true;
-        // });
+        
+        builder.addCase(loginUser.pending,(state,action)=>{
+            state.isLoding = true;
+            localStorage.setItem('isLogin',true);
+        });
+        builder.addCase(loginUser.rejected,(state,action)=>{
+            state.isLoding = false;
+            localStorage.setItem('isLogin',false);
+            console.log(action.error.message);
+        });
     }
 });
 
+export const {removeUser} = authSlice.actions;
 export default authSlice.reducer;

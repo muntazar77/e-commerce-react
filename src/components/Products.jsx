@@ -28,7 +28,6 @@ const Products = ({ data }) => {
 
   const productsList = data.map((item) => (
     <div className="col-12 col-md-4 mb-4" key={item.id}>
-        {console.log(item.attributes)} 
       <div className="card h-100">
         <Link to={`/shop/${item.id}`}>
           <img

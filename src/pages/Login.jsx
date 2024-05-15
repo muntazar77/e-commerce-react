@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link , useNavigate} from "react-router-dom";
+import { useDispatch ,useSelector} from "react-redux";
 import { loginUser } from "../store/authSlice";
 
 import "../css/login.css";
 
 const Login = () => {
+	const navigate = useNavigate();
+
+	const {auth, isLoding} = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
 
@@ -18,10 +22,13 @@ const Login = () => {
   const handlePasswordChange = (e) => {
     setPassword(e);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser({ identifier: username, password }));
+	// go to home page
+		if(isLoding === true){
+			navigate('/');
+		}
   };
 
   return (
