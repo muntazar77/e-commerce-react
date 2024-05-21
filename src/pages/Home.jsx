@@ -1,25 +1,35 @@
-import { getProducts } from "../store/prodectSlice";
+import { getFeaturedProducts } from "../store/prodectSlice";
+// import { getProducts } from "../store/prodectSlice";
 import { useDispatch, useSelector } from "react-redux";
+import HeroCarousel from "../components/HeroCarousel";
 import { useEffect } from "react";
-import Products from "../components/Products";
+import FeaturedProducts from "../components/FeaturedProducts";
 const Home = () => {
-  const { isLoding, products } = useSelector((state) => state.products);
+  const { isLoding, featuredProducts } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   
    useEffect(() => {
-     dispatch(getProducts());
+     dispatch(getFeaturedProducts("featured"));
    },[dispatch]);
 
  
 
    return (
     <>
+    {/* <!-- Start Carousel --> */}
+    <HeroCarousel data={featuredProducts.data}  />
+    {/* <!-- End Carousel --> */}
+
+
+
+
+
       {isLoding ? (
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>{" "}
         </div>
       ) : (
-        <Products data={products.data} />
+        <FeaturedProducts data={featuredProducts.data} />
            
         
       )}

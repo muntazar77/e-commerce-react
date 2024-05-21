@@ -35,9 +35,6 @@
       "type": "float",
       "required": true
     },
-    "isFeatured": {
-      "type": "boolean"
-    },
     "categroys": {
       "type": "relation",
       "relation": "manyToMany",
@@ -49,6 +46,16 @@
       "max": 5,
       "min": 0,
       "default": 0
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "featured",
+        "trening",
+        "carousel"
+      ],
+      "required": true,
+      "default": "trening"
     }
   }
 }

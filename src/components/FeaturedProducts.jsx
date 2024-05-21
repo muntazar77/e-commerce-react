@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { IoRemoveCircle } from "react-icons/io5";
 import { addToCart, removeFromCart } from "../store/prodectSlice";
 
-const Products = ({ data }) => { 
+const FeaturedProducts = ({ data }) => {
 
   const { cartProductIds } = useSelector((state) => state.products);
   const dispatch = useDispatch();
@@ -113,4 +113,4 @@ const Products = ({ data }) => {
   );
 };
 
-export default Products;
+export default FeaturedProducts;

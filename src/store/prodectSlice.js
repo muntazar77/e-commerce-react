@@ -41,6 +41,21 @@ async(filter,thunkAPI)=>{
 )
 
 
+
+//to get featured products 
+export const getFeaturedProducts = createAsyncThunk("products/getFeaturedProducts",
+async(type,thunkAPI)=>{
+    const {rejectWithValue} =thunkAPI;
+    try {
+        const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return rejectWithValue(error.message)
+    }
+})
+
+
 const initialState ={
     products:[],
     singleProduct:null,
@@ -48,6 +63,7 @@ const initialState ={
     filterProducts:[],
     error:null,
     cartProductIds:[],
+    featuredProducts:[]
 }
 
 
@@ -123,6 +139,20 @@ const productSlice = createSlice({
         });
         builder.addCase(filterProducts.pending,(state,action)=>{
             state.isLoding = true;
+        });
+
+
+
+        //To get featured products
+        builder.addCase(getFeaturedProducts.fulfilled,(state,action)=>{
+            state.isLoding = false ;
+            state.error = null;
+            state.featuredProducts =action.payload;
+        })
+        builder.addCase(getFeaturedProducts.rejected,(state,action)=>{
+            state.isLoding = false;
+            state.error =action.payload;
+             console.log("Error in data loading",action.payload);
         });
 
     }

@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
     const login = () => {
         // Implement your login logic here
         setIsLoggedIn(true);
+        return "success login"
     };
 
     const logout = () => {

@@ -842,7 +842,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
     description: Attribute.Text & Attribute.Required;
     image: Attribute.Media;
     price: Attribute.Float & Attribute.Required;
-    isFeatured: Attribute.Boolean;
     categroys: Attribute.Relation<
       'api::product.product',
       'manyToMany',
@@ -857,6 +856,9 @@ export interface ApiProductProduct extends Schema.CollectionType {
         number
       > &
       Attribute.DefaultTo<0>;
+    type: Attribute.Enumeration<['featured', 'trening', 'carousel']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'trening'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

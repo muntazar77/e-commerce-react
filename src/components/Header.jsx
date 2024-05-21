@@ -1,28 +1,18 @@
 import React from "react";
 import "../index.css";
-import { FaUser, FaCartArrowDown } from "react-icons/fa";
+import { FaUser, FaCartArrowDown ,FaFacebookF, FaInstagram ,FaTwitter, FaLinkedin} from "react-icons/fa";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
-import { NavLink, Link, useNavigate } from "react-router-dom";
-import { removeUser } from "../store/authSlice";
-const Header = () => {
+import { NavLink, Link } from "react-router-dom";
+const Header = ({isLoggedIn}) => {
   const { cartProductIds } = useSelector((state) => state.products);
- const { userData ,isLogin } =  useSelector((state) => state.auth);
+ const {isLogin } =  useSelector((state) => state.auth);
 
-  const navigate = useNavigate();
-    // const isLogin = localStorage.getItem('isLogin');
 
-    // const userData = ()=>{
-    //   if(localStorage.getItem('user')){
-    //     return JSON.parse(localStorage.getItem('user'));
-    //   }
-    //   return null;
-    // }
   const user = JSON.parse(localStorage.getItem('userData'));
   const handleLogout = () => {
      localStorage.removeItem('userData');
       localStorage.removeItem('isLogin',false);
-    //  navigate("/", { replace: true });
      window.location.reload();
   };
   return (
@@ -52,33 +42,33 @@ const Header = () => {
             </div>
             <div>
               <NavLink
-                className="text-light"
+                className="text-light m-2"
                 to="https://fb.com/templatemo"
                 target="_blank"
                 rel="sponsored"
               >
-                <i className="fab fa-facebook-f fa-sm fa-fw me-2"></i>
+              <FaFacebookF size={18} />
               </NavLink>
               <NavLink
-                className="text-light"
+                className="text-light m-2"
                 to="https://www.instagram.com/"
                 target="_blank"
               >
-                <i className="fab fa-instagram fa-sm fa-fw me-2"></i>
+              <FaInstagram  size={18}/>
               </NavLink>
               <NavLink
-                className="text-light"
+                className="text-light m-2"
                 to="https://twitter.com/"
                 target="_blank"
               >
-                <i className="fab fa-twitter fa-sm fa-fw me-2"></i>
+               <FaTwitter size={18}  />
               </NavLink>
               <NavLink
-                className="text-light"
+                className="text-light m-2"
                 to="https://www.linkedin.com/"
                 target="_blank"
               >
-                <i className="fab fa-linkedin fa-sm fa-fw"></i>
+                <FaLinkedin size={18}/>
               </NavLink>
             </div>
           </div>
@@ -95,7 +85,7 @@ const Header = () => {
                 className="navbar-brand text-success logo h1 align-self-center"
                 to="/"
               >
-                Rens
+                Muno
               </Link>
               <button
                 class="navbar-toggler border-0"

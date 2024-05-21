@@ -29,13 +29,7 @@ isLogin,
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {
-        removeUser: (state) => {
-          state.userData = null;
-          localStorage.removeItem('userData');
-          localStorage.removeItem('isLogin',false);
-        },
-      },
+
     extraReducers:(builder)=>{
         //To Get all products
         builder.addCase(loginUser.fulfilled,(state,action)=>{
@@ -56,5 +50,4 @@ const authSlice = createSlice({
     }
 });
 
-export const {removeUser} = authSlice.actions;
 export default authSlice.reducer;
