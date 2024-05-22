@@ -24,12 +24,10 @@ body {
 .grid-item--height2 { height: 100px; } */
 
 
-nav active{
+nav .active{
   background-color: #212934 !important;; 
   color: white !important;
   border-radius: 5px;
 }
-
-
 
 

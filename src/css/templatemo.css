@@ -76,6 +76,7 @@ body, ul, li, p, a, label, input, div {
 
 /* Hero Carousel */
 #template-mo-zay-hero-carousel { background: #efefef !important;}
+
 /* Accordion */
 .templatemo-accordion a { color: #000 !important;}
 .templatemo-accordion a:hover { color: #333d4a;}
@@ -189,3 +190,5 @@ body, ul, li, p, a, label, input, div {
 
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {}
+
+ 

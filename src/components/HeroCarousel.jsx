@@ -1,43 +1,52 @@
-import React, { useState } from "react";
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  ButtonBack,
-  ButtonNext,
-} from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-// import '../css/heroCarousel.css';
-const HeroCarousel = ({ data }) => {
-  console.log(data && Array.isArray(data) ? data.length : 0);
-  return (
-    <CarouselProvider
-      naturalSlideWidth={10}
-      naturalSlideHeight={10}
-      totalSlides={data && Array.isArray(data) ? data.length : 0}
-    >
-      {/* <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel"> */}
-      {/* <ol class="carousel-indicators">
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
-        // </ol> */}
 
-      <Slider>
-        {data && Array.isArray(data)
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import React, { useState ,CSSProperties } from 'react';
+const HeroCarousel = ({ data }) => {
+  const arrowStyles: CSSProperties = {
+    position: 'absolute',
+    zIndex: 2,
+    top: 'calc(50% - 15px)',
+    cursor: 'pointer',
+    padding: '20px',
+};
+
+  return (
+    <>
+  <Carousel showArrows={true} dynamicHeight={false} showStatus={false} useKeyboardArrows={true} renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                hasPrev && (
+                    <button type="button" onClick={onClickHandler} title={label} style={{ ...arrowStyles, left: 15 }}>
+                       <FaChevronLeft />
+                    </button>
+                )
+            }
+            renderArrowNext={(onClickHandler, hasNext, label) =>
+                hasNext && (
+                    <button type="button" onClick={onClickHandler} title={label} style={{ ...arrowStyles, right: 15 }}>
+                        <FaChevronRight/>
+                    </button>
+                )
+            }>
+
+       {data && Array.isArray(data)
           ? data.map((item, index) => (
-              <Slide index={index.id} key={index.id}>
+
+   
                 <div>
-                  <p className="legend">{}</p>
+               
 
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <div class="container">
                         <div class="row p-5">
-                          <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                          <div class=" col-md-8 col-lg-6 order-lg-last">
                             <img
-                              class="img-fluid"
+                            
                               src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
                               alt=""
+                              width={588}
+                              height={588}
                             />
                           </div>
                           <div class="col-lg-6 mb-0 d-flex align-items-center">
@@ -60,34 +69,22 @@ const HeroCarousel = ({ data }) => {
                     </div>
                   </div>
                 </div>
-                <ButtonBack>
-                  {" "}
-                  <a
-                    class="carousel-control-prev text-decoration-none w-auto ps-3 text-black"
-                    href="#template-mo-zay-hero-carousel"
-                    role="button"
-                    data-bs-slide="prev"
-                  >
-                    <FaChevronLeft />
-                  </a>
-                </ButtonBack>
-                <ButtonNext>
-               
-                  <a
-                    class="carousel-control-next text-decoration-none w-auto pe-3"
-                    href="#template-mo-zay-hero-carousel"
-                    role="button"
-                    data-bs-slide="next"
-                  >
-                    <FaChevronRight />
-                  </a>
-                </ButtonNext>
-              </Slide>
+             
             ))
           : null}
-      </Slider>
-    </CarouselProvider>
+</Carousel> 
+
+
+
+   
+    </>
+     
+    
+
+
   );
 };
 
 export default HeroCarousel;
+
+

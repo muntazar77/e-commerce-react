@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/templatemo.css";
-import "./css/custom.css";
 import Header from './components/Header';
 
 import Footer from './components/Footer';
