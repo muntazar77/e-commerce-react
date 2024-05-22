@@ -1,5 +1,6 @@
 
 import {createSlice , createAsyncThunk} from '@reduxjs/toolkit';
+import useFachProduct from '../hooks/useFachProduct';
 
 //TO get all products
 export const getProducts =createAsyncThunk("products/getProducts",
@@ -43,17 +44,20 @@ async(filter,thunkAPI)=>{
 
 
 //to get featured products 
-export const getFeaturedProducts = createAsyncThunk("products/getFeaturedProducts",
-async(type,thunkAPI)=>{
-    const {rejectWithValue} =thunkAPI;
-    try {
-        const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        return rejectWithValue(error.message)
-    }
-})
+// export const getFeaturedProducts = createAsyncThunk("products/getFeaturedProducts",
+// async(type,thunkAPI)=>{
+//     const {rejectWithValue} =thunkAPI;
+//     try {
+//         const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
+//         const data = await response.json();
+//         return data;
+//     } catch (error) {
+//         return rejectWithValue(error.message)
+//     }
+// })
+
+
+export const getFeaturedProducts = useFetchProduct("getFeaturedProducts","featured")
 
 
 const initialState ={
