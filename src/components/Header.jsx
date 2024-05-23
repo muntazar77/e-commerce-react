@@ -1,5 +1,4 @@
 import React from "react";
-import "../index.css";
 import { FaUser, FaCartArrowDown ,FaFacebookF, FaInstagram ,FaTwitter, FaLinkedin} from "react-icons/fa";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { useSelector } from "react-redux";

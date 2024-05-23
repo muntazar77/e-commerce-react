@@ -2,8 +2,13 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import React, { useState ,CSSProperties } from 'react';
+import { getCarousalProducts } from "../store/prodectSlice";
+import React, { CSSProperties ,useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 const HeroCarousel = ({ data }) => {
+
+  
+// console.log("carousalProducts",carousalProducts);
   const arrowStyles: CSSProperties = {
     position: 'absolute',
     zIndex: 2,
@@ -36,7 +41,7 @@ const HeroCarousel = ({ data }) => {
                 <div>
                
 
-                  <div class="carousel-inner">
+                  <div class="carousel-inner" key={item.id}>
                     <div class="carousel-item active">
                       <div class="container">
                         <div class="row p-5">

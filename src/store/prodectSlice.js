@@ -1,6 +1,6 @@
 
 import {createSlice , createAsyncThunk} from '@reduxjs/toolkit';
-import useFachProduct from '../hooks/useFachProduct';
+import FeaturedProducts from '../components/FeaturedProducts';
 
 //TO get all products
 export const getProducts =createAsyncThunk("products/getProducts",
@@ -43,21 +43,36 @@ async(filter,thunkAPI)=>{
 
 
 
-//to get featured products 
-// export const getFeaturedProducts = createAsyncThunk("products/getFeaturedProducts",
-// async(type,thunkAPI)=>{
-//     const {rejectWithValue} =thunkAPI;
-//     try {
-//         const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
-//         const data = await response.json();
-//         return data;
-//     } catch (error) {
-//         return rejectWithValue(error.message)
-//     }
-// })
+// to get Carousal Products
+ export const getCarousalProducts = createAsyncThunk("products/getCarousalProducts",
+ async(type,thunkAPI)=>{
+     const {rejectWithValue} =thunkAPI;
+     try {
+         const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
+         const data = await response.json();
+         return data;
+     } catch (error) {
+         return rejectWithValue(error.message)
+     }
+ })
 
 
-export const getFeaturedProducts = useFetchProduct("getFeaturedProducts","featured")
+ // to get Featured Products 
+ export const getFeaturedProducts = createAsyncThunk("products/getFeaturedProducts",
+ async(type,thunkAPI)=>{
+     const {rejectWithValue} =thunkAPI;
+     try {
+         const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
+         const data = await response.json();
+         return data;
+     } catch (error) {
+         return rejectWithValue(error.message)
+     }
+ })
+
+
+
+// export const getFeaturedProducts = useFetchProduct("getFeaturedProducts","featured")
 
 
 const initialState ={
@@ -67,6 +82,7 @@ const initialState ={
     filterProducts:[],
     error:null,
     cartProductIds:[],
+    carousalProducts:[],
     featuredProducts:[]
 }
 
@@ -152,8 +168,23 @@ const productSlice = createSlice({
             state.isLoding = false ;
             state.error = null;
             state.featuredProducts =action.payload;
+
         })
         builder.addCase(getFeaturedProducts.rejected,(state,action)=>{
+            state.isLoding = false;
+            state.error =action.payload;
+             console.log("Error in data loading",action.payload);
+        });
+
+
+           //To get CarousalProducts 
+           builder.addCase(getCarousalProducts.fulfilled,(state,action)=>{
+            state.isLoding = false ;
+            state.error = null;
+            state.carousalProducts =action.payload;
+
+        })
+        builder.addCase(getCarousalProducts.rejected,(state,action)=>{
             state.isLoding = false;
             state.error =action.payload;
              console.log("Error in data loading",action.payload);

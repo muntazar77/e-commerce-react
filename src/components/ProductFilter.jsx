@@ -204,35 +204,7 @@ const ProductFilter = ({ categories, products }) => {
               ))}
             </div>
 
-            {/* for pagination */}
-            {/* <div div="row">
-              <ul className="pagination pagination-lg justify-content-end">
-                <li className="page-item disabled">
-                  <Link
-                    className="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0"
-                    tabIndex={"-1"}
-                  >
-                    1
-                  </Link>
-                </li>
-                <li className="page-item">
-                  <Link
-                    className="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
-                    href="#"
-                  >
-                    2
-                  </Link>
-                </li>
-                <li className="page-item">
-                  <Link
-                    className="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
-                    href="#"
-                  >
-                    3
-                  </Link>
-                </li>
-              </ul>
-            </div> */}
+           
           </div>
         </div>
       </div>

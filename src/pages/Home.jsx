@@ -1,24 +1,30 @@
-import { getFeaturedProducts } from "../store/prodectSlice";
-// import { getProducts } from "../store/prodectSlice";
+import { getCarousalProducts, getFeaturedProducts , getProducts } from "../store/prodectSlice";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import HeroCarousel from "../components/HeroCarousel";
 import { useEffect } from "react";
 import FeaturedProducts from "../components/FeaturedProducts";
+import AllProduct from "../components/AllProduct";
 const Home = () => {
-  const { isLoding, featuredProducts } = useSelector((state) => state.products);
+  const { isLoding, carousalProducts, featuredProducts ,products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  
   
    useEffect(() => {
      dispatch(getFeaturedProducts("featured"));
+    dispatch(getCarousalProducts("carousel"));
+    dispatch(getProducts());
+
+
    },[dispatch]);
 
+   console.log("dsfds",products.data)
  
 
    return (
     <>
     {/* <!-- Start Carousel --> */}
-    <HeroCarousel data={featuredProducts.data}  />
-    {/* <!-- End Carousel --> */}
+    <HeroCarousel data={carousalProducts.data} />
 
 
 
@@ -29,13 +35,17 @@ const Home = () => {
           <span className="visually-hidden">Loading...</span>{" "}
         </div>
       ) : (
-        <FeaturedProducts data={featuredProducts.data} />
-           
+        <>
+        {/* To get all products */}
+        <AllProduct Product data={products.data} /> 
         
+        {/* To get featured products */}
+        <FeaturedProducts data={featuredProducts.data} />
+        </>
       )}
 
       {/* <!-- Start Categories of The Month --> */}
-      <section className="container py-5">
+      <section className="container py-5" >
         <div className="row text-center pt-3">
           <div className="col-lg-6 m-auto">
             <h1 className="h1">Categories of The Month</h1>
@@ -48,48 +58,48 @@ const Home = () => {
 
         <div className="row">
           <div className="col-12 col-md-4 p-5 mt-3">
-            <a href="/">
+            <Link to={"/shop"}>
               <img
                 src="/assets/img/category_img_01.jpg"
                 className="rounded-circle img-fluid border"
                 alt="fdkl"
               />
-            </a>
+            </Link>
             <h5 className="text-center mt-3 mb-3">Watches</h5>
             <p className="text-center">
-              <a className="btn btn-success" href="e">
+              <Link className="btn btn-success" to={"/shop"}>
                 Go Shop
-              </a>
+              </Link>
             </p>
           </div>
           <div className="col-12 col-md-4 p-5 mt-3">
-            <a href="/">
+            <Link to={"/shop"}>
               <img
                 src="/assets/img/category_img_02.jpg"
                 className="rounded-circle img-fluid border"
                 alt="er"
               />
-            </a>
+            </Link>
             <h2 className="h5 text-center mt-3 mb-3">Shoes</h2>
             <p className="text-center">
-              <a className="btn btn-success" href="d">
+              <Link className="btn btn-success" to={"/shop"}>
                 Go Shop
-              </a>
+              </Link>
             </p>
           </div>
           <div className="col-12 col-md-4 p-5 mt-3">
-            <a href="/">
+            <Link to={"/shop"}>
               <img
                 src="/assets/img/category_img_03.jpg"
                 className="rounded-circle img-fluid border"
                 alt=""
               />
-            </a>
+            </Link>
             <h2 className="h5 text-center mt-3 mb-3">Accessories</h2>
             <p className="text-center">
-              <a className="btn btn-success" href="/">
+              <Link className="btn btn-success" to={"/shop"}>
                 Go Shop
-              </a>
+              </Link>
             </p>
           </div>
         </div>
