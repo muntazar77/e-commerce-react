@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Category from './pages/Category';
+// import Category from './pages/Category';
 import ShopSingle from './pages/ShopSingle';
 import Login from './pages/Login';
 import Shop from './pages/Shop';
@@ -28,7 +28,7 @@ const Main = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/Categories" element={<Category />} />
+        {/* <Route path="/Categories" element={<Category />} /> */}
         <Route path="/shop/:id" element={<ShopSingle />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />

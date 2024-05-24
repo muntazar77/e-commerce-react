@@ -1,19 +1,23 @@
 
 import {createSlice , createAsyncThunk} from '@reduxjs/toolkit';
-import FeaturedProducts from '../components/FeaturedProducts';
+import axios from 'axios';
 
-//TO get all products
-export const getProducts =createAsyncThunk("products/getProducts",
-async( _, thunkAPI)=>{
-    const { rejectWithValue} =thunkAPI
-    try {
-        const response = await fetch("http://localhost:1337/api/products?populate=*")
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        return rejectWithValue(error.message)
-    }
-})
+
+
+export const getProducts = createAsyncThunk('products/getProducts', async (_,thunkAPI) => {
+  const { rejectWithValue} =thunkAPI
+
+  try {
+    // const response = await axios.get(`http://localhost:1337/api/products?pagination[page]=${page}&pagination[pageSize]=${pageSize}&populate=*`);
+    const response = await axios.get(`http://localhost:1337/api/products?populate=*`);
+  return response.data;
+} catch (error) {
+    console.log("Error in data loading",error.message);
+     return rejectWithValue(error.message)
+}
+});
+
+
 
 //To get single product
 export const getSingleProduct = createAsyncThunk("products/getSingleProduct",
@@ -70,6 +74,18 @@ async(filter,thunkAPI)=>{
      }
  })
 
+  // to get  TrendProducts Products 
+  export const getTrendProducts = createAsyncThunk("products/getTrendProducts",
+  async(type,thunkAPI)=>{
+      const {rejectWithValue} =thunkAPI;
+      try {
+          const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
+          const data = await response.json();
+          return data;
+      } catch (error) {
+          return rejectWithValue(error.message)
+      }
+  })
 
 
 // export const getFeaturedProducts = useFetchProduct("getFeaturedProducts","featured")
@@ -83,7 +99,8 @@ const initialState ={
     error:null,
     cartProductIds:[],
     carousalProducts:[],
-    featuredProducts:[]
+    featuredProducts:[],
+    trendProducts:[]
 }
 
 
@@ -190,6 +207,20 @@ const productSlice = createSlice({
              console.log("Error in data loading",action.payload);
         });
 
+
+
+          //To get trendProducts
+          builder.addCase(getTrendProducts.fulfilled,(state,action)=>{
+            state.isLoding = false ;
+            state.error = null;
+            state.trendProducts =action.payload;
+
+        })
+        builder.addCase(getTrendProducts.rejected,(state,action)=>{
+            state.isLoding = false;
+            state.error =action.payload;
+             console.log("Error in data loading",action.payload);
+        });
     }
         
     

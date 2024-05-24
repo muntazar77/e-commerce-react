@@ -1,24 +1,24 @@
-import { getCarousalProducts, getFeaturedProducts , getProducts } from "../store/prodectSlice";
+import { getCarousalProducts, getFeaturedProducts , getTrendProducts } from "../store/prodectSlice";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import HeroCarousel from "../components/HeroCarousel";
 import { useEffect } from "react";
 import FeaturedProducts from "../components/FeaturedProducts";
-import AllProduct from "../components/AllProduct";
+import TrendProducts from "../components/TrendProducts";
 const Home = () => {
-  const { isLoding, carousalProducts, featuredProducts ,products } = useSelector((state) => state.products);
+  const { isLoding, carousalProducts, featuredProducts  ,trendProducts} = useSelector((state) => state.products);
   const dispatch = useDispatch();
   
   
    useEffect(() => {
      dispatch(getFeaturedProducts("featured"));
     dispatch(getCarousalProducts("carousel"));
-    dispatch(getProducts());
-
+    // dispatch(getProducts({ page: 1, pageSize: 2 })); // Fetch data for the first page
+    dispatch(getTrendProducts("trening"));
 
    },[dispatch]);
 
-   console.log("dsfds",products.data)
+   console.log("dsfds",trendProducts)
  
 
    return (
@@ -37,10 +37,8 @@ const Home = () => {
       ) : (
         <>
         {/* To get all products */}
-        <AllProduct Product data={products.data} /> 
-        
-        {/* To get featured products */}
-        <FeaturedProducts data={featuredProducts.data} />
+        <TrendProducts data={trendProducts.data} /> 
+
         </>
       )}
 
@@ -105,6 +103,11 @@ const Home = () => {
         </div>
       </section>
       {/* <!-- End Categories of The Month --> */}
+
+
+              
+        {/* To get featured products */}
+        <FeaturedProducts data={featuredProducts.data} />
     </>
   );
 };

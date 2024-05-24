@@ -1,22 +1,23 @@
 import { IoRemoveCircle } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 import { useDispatch, useSelector } from "react-redux";
 import { FaEye, FaStar, FaRegHeart, FaCartPlus } from "react-icons/fa";
 import { addToCart, removeFromCart } from "../store/prodectSlice";
 
-const AllProduct = ({ data }) => {
+const TrendProducts = ({ data }) => {
   const { cartProductIds } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
-  //this function is for show rating of product
+  // This function is for showing the rating of a product
   const rating = (item, id) => {
     const ratingList = Array(5)
       .fill()
       .map((_, index) => {
         if (index < item) {
-          return <FaStar className="text-warning" />;
+          return <FaStar className="text-warning" key={index} />;
         } else {
-          return <FaStar className="text-muted" />;
+          return <FaStar className="text-muted" key={index} />;
         }
       });
     return ratingList;
@@ -30,13 +31,13 @@ const AllProduct = ({ data }) => {
     <>
       <section className="bg-white">
         <div className="container py-5">
-          <div class="row text-center py-3">
+          <div className="row text-center py-3">
             <div className="col-lg-12 mb-4">
-              <h1 className="h1">All Products</h1>
+              <h1 className="h1">Trening Products</h1>
             </div>
             {data.map((item) => (
-              <div class="col-md-4">
-                <div class="card mb-4 product-wap rounded-0">
+              <div className="col-md-4" key={item.id}>
+                <div className="card mb-4 product-wap rounded-0">
                   <div className="card rounded-0">
                     <Link to={`/shop/${item.id}`}>
                       <img
@@ -95,7 +96,7 @@ const AllProduct = ({ data }) => {
                     </Link>
 
                     <p className="card-text text-center">
-                      {item.attributes.categroys.data[0].attributes.name})
+                      {item.attributes.categroys.data[0].attributes.name}
                     </p>
                     <ul className="list-unstyled d-flex justify-content-center mb-1">
                       <li>{rating(item.attributes.rating, item.id)}</li>
@@ -106,39 +107,11 @@ const AllProduct = ({ data }) => {
               </div>
             ))}
           </div>
-          <div div="row">
-            <ul class="pagination pagination-lg justify-content-end">
-              <li class="page-item disabled">
-                <Link
-                  class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0"
-                  href="#"
-                  tabindex="-1"
-                >
-                  1
-                </Link>
-              </li>
-              <li class="page-item">
-                <Link
-                  class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
-                  href="#"
-                >
-                  2
-                </Link>
-              </li>
-              <li class="page-item">
-                <Link
-                  class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
-                  href="#"
-                >
-                  3
-                </Link>
-              </li>
-            </ul>
-          </div>
+    
         </div>
       </section>
     </>
   );
 };
 
-export default AllProduct;
+export default TrendProducts;
