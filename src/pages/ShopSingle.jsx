@@ -33,7 +33,7 @@ const ShopSingle = () => {
 
   if (!data && (data === undefined || data === "")) {
     return (
-      <div class="text-center">
+      <div className="text-center">
         <h2>there is no content</h2>
       </div>
     );
@@ -43,13 +43,13 @@ const ShopSingle = () => {
     <>
       {/* <!-- Open Content --> */}
       <Fragment>
-        <section class="bg-light">
-          <div class="container pb-5">
-            <div class="row">
-              <div class="col-lg-5 mt-5">
-                <div class="card mb-3">
+        <section className="bg-light">
+          <div className="container pb-5">
+            <div className="row">
+              <div className="col-lg-5 mt-5">
+                <div className="card mb-3">
                      <img
-                        class="card-img img-fluid"
+                        className="card-img img-fluid"
                         src={`${process.env.REACT_APP_URL}${data.image.data.attributes.url}`}
                         id="product-detail"
                         alt=""
@@ -57,23 +57,23 @@ const ShopSingle = () => {
                 </div>
             
               </div>
-              <div class="col-lg-7 mt-5">
-                <div class="card">
-                  <div class="card-body">
-                    <h1 class="h2">{data.title}</h1>
-                    <p class="h3 py-2">{data.price}$</p>
-                    <p class="py-2">
+              <div className="col-lg-7 mt-5">
+                <div className="card">
+                  <div className="card-body">
+                    <h1 className="h2">{data.title}</h1>
+                    <p className="h3 py-2">{data.price}$</p>
+                    <p className="py-2">
                      
-                      <span class="list-inline-item text-dark">
+                      <span className="list-inline-item text-dark">
                         Rating {rating(data.rating)}
                       </span>
                     </p>
-                    <ul class="list-inline">
-                      <li class="list-inline-item">
+                    <ul className="list-inline">
+                      <li className="list-inline-item">
                         <h6>Category:</h6>
                       </li>
-                      <li class="list-inline-item">
-                        <p class="text-muted">
+                      <li className="list-inline-item">
+                        <p className="text-muted">
                           <strong>{data.categroys.data[0].attributes.name}</strong>
                           
                         </p>
@@ -90,10 +90,10 @@ const ShopSingle = () => {
                         name="product-title"
                         value="Activewear"
                       />
-                      <div class="row">
-                        <div class="col-auto">
-                          <ul class="list-inline pb-3">
-                            <li class="list-inline-item">
+                      <div className="row">
+                        <div className="col-auto">
+                          <ul className="list-inline pb-3">
+                            <li className="list-inline-item">
                               Size :
                               <input
                                 type="hidden"
@@ -102,23 +102,23 @@ const ShopSingle = () => {
                                 value="S"
                               />
                             </li>
-                            <li class="list-inline-item">
-                              <span class="btn btn-success btn-size">S</span>
+                            <li className="list-inline-item">
+                              <span className="btn btn-success btn-size">S</span>
                             </li>
-                            <li class="list-inline-item">
-                              <span class="btn btn-success btn-size">M</span>
+                            <li className="list-inline-item">
+                              <span className="btn btn-success btn-size">M</span>
                             </li>
-                            <li class="list-inline-item">
-                              <span class="btn btn-success btn-size">L</span>
+                            <li className="list-inline-item">
+                              <span className="btn btn-success btn-size">L</span>
                             </li>
-                            <li class="list-inline-item">
-                              <span class="btn btn-success btn-size">XL</span>
+                            <li className="list-inline-item">
+                              <span className="btn btn-success btn-size">XL</span>
                             </li>
                           </ul>
                         </div>
-                        <div class="col-auto">
-                          <ul class="list-inline pb-3">
-                            <li class="list-inline-item text-right">
+                        <div className="col-auto">
+                          <ul className="list-inline pb-3">
+                            <li className="list-inline-item text-right">
                               Quantity
                               <input
                                 type="hidden"
@@ -127,30 +127,30 @@ const ShopSingle = () => {
                                 value="1"
                               />
                             </li>
-                            <li class="list-inline-item">
-                              <span class="btn btn-success" id="btn-minus">
+                            <li className="list-inline-item">
+                              <span className="btn btn-success" id="btn-minus">
                                 -
                               </span>
                             </li>
-                            <li class="list-inline-item">
-                              <span class="badge bg-secondary" id="var-value">
+                            <li className="list-inline-item">
+                              <span className="badge bg-secondary" id="var-value">
                                 1
                               </span>
                             </li>
-                            <li class="list-inline-item">
-                              <span class="btn btn-success" id="btn-plus">
+                            <li className="list-inline-item">
+                              <span className="btn btn-success" id="btn-plus">
                                 +
                               </span>
                             </li>
                           </ul>
                         </div>
                       </div>
-                      <div class="row pb-3">
-                        <div class="col d-grid">
+                      <div className="row pb-3">
+                        <div className="col d-grid">
                           
-                          <Link to="/checkout" class="btn btn-success btn-lg">Buy</Link>
+                          <Link to="/checkout" className="btn btn-success btn-lg">Buy</Link>
                         </div>
-                        <div class="col d-grid">
+                        <div className="col d-grid">
                       
 
                           {!cartProductIds.includes(data) && (

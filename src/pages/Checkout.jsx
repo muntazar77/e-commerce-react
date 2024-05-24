@@ -30,32 +30,32 @@ const Checkout = () => {
 
   return (
     <div className="checkout">
-      <div class="container">
+      <div className="container">
 
         {/* if there are no product show this messge */}
 
         {cartProductIds.length === 0 && (
-          <div class="no-items">
+          <div className="no-items">
                 <h2 className="desc">No items in the cart</h2>
           </div>
         )}
         {/* To know Is there any product to show */}
         {cartProductIds.length > 0 && (
-          <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
-              <div class="col-md-9">
-                <div class="ibox">
-                  <div class="ibox-title">
-                    <span class="pull-right">
+          <div className="wrapper wrapper-content animated fadeInRight">
+            <div className="row">
+              <div className="col-md-9">
+                <div className="ibox">
+                  <div className="ibox-title">
+                    <span className="pull-right">
                       (<strong>{cartProductIds.length}</strong>) items
                     </span>
                     <h5>Items in your cart</h5>
                   </div>
 
                   {cartProductIds.map((item) => (
-                    <div class="ibox-content">
-                      <div class="table-responsive">
-                        <table class="table shoping-cart-table">
+                    <div className="ibox-content">
+                      <div className="table-responsive">
+                        <table className="table shoping-cart-table">
                           <tbody>
                             <tr>
                               <td>
@@ -66,14 +66,14 @@ const Checkout = () => {
                                   height={100}
                                 />
                               </td>
-                              <td class="desc">
+                              <td className="desc">
                                 <h3>
-                                  <Link href="#" class="text-navy">
+                                  <Link href="#" className="text-navy">
                                     {item.attributes.title.substring(0, 30)}
                                   </Link>
                                 </h3>
-                                <p class="small"></p>
-                                <dl class="small m-b-none">
+                                <p className="small"></p>
+                                <dl className="small m-b-none">
                                   {rating(item.attributes.rating, item.id)}
                                   <dt>Description lists</dt>
                                   <dd>
@@ -84,15 +84,15 @@ const Checkout = () => {
                                   </dd>
                                 </dl>
 
-                                <div class="m-t-sm">
+                                <div className="m-t-sm">
                                   <Link
                                     href="#"
-                                    class="text-muted"
+                                    className="text-muted"
                                     onClick={() =>
                                       dispatch(removeFromCart(item.id))
                                     }
                                   >
-                                    <i class="fa fa-trash"></i> Remove item
+                                    <i className="fa fa-trash"></i> Remove item
                                   </Link>
                                 </div>
                               </td>
@@ -106,12 +106,12 @@ const Checkout = () => {
                     </div>
                   ))}
 
-                  <div class="ibox-content">
-                    <button class="btn btn-primary pull-right">
-                      <i class=" fa fa-shopping-cart"></i> Checkout
+                  <div className="ibox-content">
+                    <button className="btn btn-primary pull-right">
+                      <i className=" fa fa-shopping-cart"></i> Checkout
                     </button>
                     <button
-                      class="btn btn-primary pull-right"
+                      className="btn btn-primary pull-right"
                       onClick={() => dispatch(clearAllItems())}
                     >
                       <MdDelete />
@@ -119,35 +119,35 @@ const Checkout = () => {
                     </button>
                     <Link to={"/"} className="btn btn-primary ">
                       {" "}
-                      <i class="fa fa-arrow-left"></i> Continue shopping
+                      <i className="fa fa-arrow-left"></i> Continue shopping
                     </Link>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="ibox">
-                  <div class="ibox-title">
+              <div className="col-md-3">
+                <div className="ibox">
+                  <div className="ibox-title">
                     <h5>Cart Summary</h5>
                   </div>
-                  <div class="ibox-content">
+                  <div className="ibox-content">
                     <span>Total</span>
-                    <h2 class="font-bold">
+                    <h2 className="font-bold">
                       {/* $390,00 */}
                       {console.log(totalPrice)}
                       {totalPrice.toFixed(2)}
                     </h2>
 
                     <hr />
-                    <span class="text-muted small">
+                    <span className="text-muted small">
                       *For United States, France and Germany applicable sales
                       tax will be applied
                     </span>
-                    <div class="m-t-sm">
-                      <div class="btn-group">
-                        <Link href="#" class="btn btn-primary btn-sm">
-                          <i class="fa fa-shopping-cart"></i> Checkout
+                    <div className="m-t-sm">
+                      <div className="btn-group">
+                        <Link href="#" className="btn btn-primary btn-sm">
+                          <i className="fa fa-shopping-cart"></i> Checkout
                         </Link>
-                        <Link href="#" class="btn btn-white btn-sm">
+                        <Link href="#" className="btn btn-white btn-sm">
                           {" "}
                           Cancel
                         </Link>
@@ -156,15 +156,15 @@ const Checkout = () => {
                   </div>
                 </div>
 
-                <div class="ibox">
-                  <div class="ibox-title">
+                <div className="ibox">
+                  <div className="ibox-title">
                     <h5>Support</h5>
                   </div>
-                  <div class="ibox-content text-center">
+                  <div className="ibox-content text-center">
                     <h3>
-                      <i class="fa fa-phone"></i> +43 100 783 001
+                      <i className="fa fa-phone"></i> +43 100 783 001
                     </h3>
-                    <span class="small">
+                    <span className="small">
                       Please contact with us if you have any questions. We are
                       avalible 24h.
                     </span>

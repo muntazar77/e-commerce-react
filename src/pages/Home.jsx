@@ -18,7 +18,6 @@ const Home = () => {
 
    },[dispatch]);
 
-   console.log("dsfds",trendProducts)
  
 
    return (

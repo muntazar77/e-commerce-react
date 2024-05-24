@@ -87,7 +87,7 @@ const Header = ({isLoggedIn}) => {
                 {process.env.REACT_APP_NAME}
               </Link>
               <button
-                class="navbar-toggler border-0"
+                className="navbar-toggler border-0"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#templatemo_main_nav"
@@ -95,7 +95,7 @@ const Header = ({isLoggedIn}) => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span class="navbar-toggler-icon"></span>
+                <span className="navbar-toggler-icon"></span>
               </button>
             </div>
             <div className="col-lg-8">
@@ -158,25 +158,25 @@ const Header = ({isLoggedIn}) => {
               </div>
             </div>
 
-            <div class=" col-lg-2">
+            <div className=" col-lg-2">
               <div className="d-flex justify-content-between ">
                 <Link
                   to={"/checkout"}
                   size={35}
-                  class="mr-3 ml-3 nav-icon position-relative text-decoration-none text-dark"
+                  className="mr-3 ml-3 nav-icon position-relative text-decoration-none text-dark"
                 >
                   <FaCartArrowDown />
-                  <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                  <span className="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
                     {cartProductIds.length}
                   </span>
                 </Link>
                 {isLogin ? (
                   <div>
-                    <Link class="nav-icon mr-3 text-decoration-none text-dark"> { user.user.username ? (user.user.username) : null } </Link>
+                    <Link className="nav-icon mr-3 text-decoration-none text-dark"> { user.user.username ? (user.user.username) : null } </Link>
 
                     <Link
                       onClick={handleLogout}
-                      class="nav-icon position-relative mr-4 text-decoration-none "
+                      className="nav-icon position-relative mr-4 text-decoration-none "
                     >
 
                       <RiLogoutBoxRFill size={30} />
@@ -185,7 +185,7 @@ const Header = ({isLoggedIn}) => {
                 ) : (
                   <Link
                     to={"/login"}
-                    class="nav-icon position-relative text-decoration-none"
+                    className="nav-icon position-relative text-decoration-none"
                   >
                     <FaUser className="text-dark " />
                   </Link>

@@ -34,7 +34,6 @@ const Main = () => {
         <Route path="/login" element={<Login />} />
       </Routes>
       {location.pathname !== '/login' && <Footer />}
-    {console.log("location",`${process.env.REACT_APP_API_URL}products?populate=*&filters[type]`)}
     </>
   );
 };

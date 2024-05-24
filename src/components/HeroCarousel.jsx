@@ -1,8 +1,8 @@
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import React, { CSSProperties } from 'react';
 const HeroCarousel = ({ data }) => {
 
   
@@ -13,37 +13,38 @@ const HeroCarousel = ({ data }) => {
     top: 'calc(50% - 15px)',
     cursor: 'pointer',
     padding: '20px',
+   
   };
 
   return (
     <>
-  <Carousel showArrows={true} dynamicHeight={false} showStatus={false} useKeyboardArrows={true} renderArrowPrev={(onClickHandler, hasPrev, label) =>
-                hasPrev && (
-                    <button type="button" onClick={onClickHandler} title={label} style={{ ...arrowStyles, left: 15 }}>
-                       <FaChevronLeft />
-                    </button>
-                )
-            }
-            renderArrowNext={(onClickHandler, hasNext, label) =>
-                hasNext && (
-                    <button type="button" onClick={onClickHandler} title={label} style={{ ...arrowStyles, right: 15 }}>
-                        <FaChevronRight/>
-                    </button>
-                )
-            }>
+  <Carousel showArrows={true} showThumbs={false} dynamicHeight={false} showStatus={false} useKeyboardArrows={true} renderArrowPrev={(onClickHandler, hasPrev, label) =>
+          hasPrev && (
+            <Link onClick={onClickHandler} title={label} style={{ ...arrowStyles, left: 15 }}>
+               <FaChevronLeft  style={{ fontSize: '40px', color: '#0000008f' }}/>
+            </Link>
+          )
+        }
+        renderArrowNext={(onClickHandler, hasNext, label) =>
+          hasNext && (
+            <Link onClick={onClickHandler} title={label} style={{ ...arrowStyles, right: 15 }}>
+              <FaChevronRight  style={{ fontSize: '40px', color: '#0000008f' }}/>
+            </Link>
+          )
+        }>
 
        {data && Array.isArray(data)
           ? data.map((item, index) => (
 
    
-                <div>
+                <div key={item.id}>
                
 
-                  <div class="carousel-inner" key={item.id}>
-                    <div class="carousel-item active">
-                      <div class="container">
-                        <div class="row p-5">
-                          <div class=" col-md-8 col-lg-6 order-lg-last">
+                  <div className="carousel-inner" >
+                    <div className="carousel-item active">
+                      <div className="container">
+                        <div className="row p-5">
+                          <div className=" col-md-8 col-lg-6 order-lg-last">
                             <img
                             
                               src={`${process.env.REACT_APP_URL}${item.attributes.image.data.attributes.url}`}
@@ -52,12 +53,12 @@ const HeroCarousel = ({ data }) => {
                               height={588}
                             />
                           </div>
-                          <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left align-self-center">
-                              <h1 class="h1 text-success">
+                          <div className="col-lg-6 mb-0 d-flex align-items-center">
+                            <div className="text-align-left align-self-center">
+                              <h1 className="h1 text-success">
                                 <b>Muno</b> eCommerce
                               </h1>
-                              <h3 class="h2">{item.attributes.title}</h3>
+                              <h3 className="h2">{item.attributes.title}</h3>
                               <p>
                                 {" "}
                                 {item.attributes.description.substring(

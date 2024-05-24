@@ -27,7 +27,8 @@ const FeaturedProducts = ({ data }) => {
   };
 
   const productsList = data.map((item) => (
-    <div className="col-12 col-md-4 mb-4" key={item.id}>
+   
+           <div className="col-12 col-md-4 mb-4" key={item.id} >
       <div className="card h-100">
         <Link to={`/shop/${item.id}`}>
           <img
@@ -89,6 +90,7 @@ const FeaturedProducts = ({ data }) => {
         </div>
       </div>
     </div>
+ 
   ));
 
   return (
