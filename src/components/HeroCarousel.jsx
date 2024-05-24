@@ -2,20 +2,18 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import { getCarousalProducts } from "../store/prodectSlice";
-import React, { CSSProperties ,useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import React, { CSSProperties } from 'react';
 const HeroCarousel = ({ data }) => {
 
   
 // console.log("carousalProducts",carousalProducts);
-  const arrowStyles: CSSProperties = {
+  const arrowStyles = {
     position: 'absolute',
     zIndex: 2,
     top: 'calc(50% - 15px)',
     cursor: 'pointer',
     padding: '20px',
-};
+  };
 
   return (
     <>
@@ -48,7 +46,7 @@ const HeroCarousel = ({ data }) => {
                           <div class=" col-md-8 col-lg-6 order-lg-last">
                             <img
                             
-                              src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
+                              src={`${process.env.REACT_APP_URL}${item.attributes.image.data.attributes.url}`}
                               alt=""
                               width={588}
                               height={588}

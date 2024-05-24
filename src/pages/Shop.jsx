@@ -1,4 +1,4 @@
-import { FaEye ,FaStar ,FaRegHeart ,FaCartPlus} from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 import { useEffect,  } from 'react';
 import { useDispatch , useSelector } from "react-redux";

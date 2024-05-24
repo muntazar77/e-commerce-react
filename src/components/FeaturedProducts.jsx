@@ -31,7 +31,7 @@ const FeaturedProducts = ({ data }) => {
       <div className="card h-100">
         <Link to={`/shop/${item.id}`}>
           <img
-            src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
+            src={`${process.env.REACT_APP_URL}${item.attributes.image.data.attributes.url}`}
             className="card-img-top"
             alt="d"
             style={{ height: "414px" }}

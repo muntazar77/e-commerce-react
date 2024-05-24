@@ -1,11 +1,12 @@
 import {useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, Fragment } from "react";
-import { getSingleProduct } from "../store/prodectSlice";
+import { getSingleProduct , addToCart, removeFromCart} from "../store/prodectSlice";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ShopSingle = () => {
-  const { singleProduct } = useSelector((state) => state.products);
+  const { singleProduct ,cartProductIds} = useSelector((state) => state.products);
   const dispatch = useDispatch();
   let param = useParams();
 
@@ -16,17 +17,19 @@ const ShopSingle = () => {
   const data = singleProduct?.data.attributes;
   //  const data =singleProduct
 
-   //this function is for show rating
-   const rating = (item) => {
-    const ratingList = Array(5).fill().map((_, index) => {
+ // This function is for showing the rating of a product
+ const rating = (item, id) => {
+  const ratingList = Array(5)
+    .fill()
+    .map((_, index) => {
       if (index < item) {
-        return <FaStar className="text-warning" />;
+        return <FaStar className="text-warning" key={index} />;
       } else {
-        return <FaStar className="text-muted" />;
+        return <FaStar className="text-muted" key={index} />;
       }
     });
-    return ratingList;
-  };
+  return ratingList;
+};
 
   if (!data && (data === undefined || data === "")) {
     return (
@@ -47,7 +50,7 @@ const ShopSingle = () => {
                 <div class="card mb-3">
                      <img
                         class="card-img img-fluid"
-                        src={`http://localhost:1337${data.image.data.attributes.url}`}
+                        src={`${process.env.REACT_APP_URL}${data.image.data.attributes.url}`}
                         id="product-detail"
                         alt=""
                     />
@@ -60,11 +63,7 @@ const ShopSingle = () => {
                     <h1 class="h2">{data.title}</h1>
                     <p class="h3 py-2">{data.price}$</p>
                     <p class="py-2">
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-warning"></i>
-                      <i class="fa fa-star text-secondary"></i>
+                     
                       <span class="list-inline-item text-dark">
                         Rating {rating(data.rating)}
                       </span>
@@ -148,24 +147,22 @@ const ShopSingle = () => {
                       </div>
                       <div class="row pb-3">
                         <div class="col d-grid">
-                          <button
-                            type="submit"
-                            class="btn btn-success btn-lg"
-                            name="submit"
-                            value="buy"
-                          >
-                            Buy
-                          </button>
+                          
+                          <Link to="/checkout" class="btn btn-success btn-lg">Buy</Link>
                         </div>
                         <div class="col d-grid">
-                          <button
-                            type="submit"
-                            class="btn btn-success btn-lg"
-                            name="submit"
-                            value="addtocard"
-                          >
-                            Add To Cart
-                          </button>
+                      
+
+                          {!cartProductIds.includes(data) && (
+                              <Link className="btn btn-success text-white mt-2"   onClick={() => dispatch(addToCart(data))}> 
+                             Add To Cart
+                              </Link>
+                            )}
+                            {cartProductIds.includes(data) && (
+                              <Link className="btn btn-success text-white mt-2"  onClick={() => dispatch(removeFromCart(data))}>
+                                 Remove form cart
+                              </Link>
+                            )}
                         </div>
                       </div>
                     </form>

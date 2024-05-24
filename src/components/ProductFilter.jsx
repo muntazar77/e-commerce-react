@@ -136,7 +136,7 @@ const ProductFilter = ({ categories, products }) => {
                     <div className="card rounded-0">
                       <Link to={`/shop/${item.id}`}>
                         <img
-                          src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
+                          src={`${process.env.REACT_APP_URL}${item.attributes.image.data.attributes.url}`}
                           className="card-img rounded-0 img-fluid"
                           alt="d"
                           style={{ height: "302", width: "302" }}

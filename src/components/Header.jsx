@@ -84,7 +84,7 @@ const Header = ({isLoggedIn}) => {
                 className="navbar-brand text-success logo h1 align-self-center"
                 to="/"
               >
-                Muno
+                {process.env.REACT_APP_NAME}
               </Link>
               <button
                 class="navbar-toggler border-0"
@@ -134,7 +134,7 @@ const Header = ({isLoggedIn}) => {
                       About
                     </NavLink>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <NavLink
                       to="/categories"
                       className={({ isActive }) =>
@@ -143,7 +143,7 @@ const Header = ({isLoggedIn}) => {
                     >
                       Categories
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
                     <NavLink
                       to="/contact"

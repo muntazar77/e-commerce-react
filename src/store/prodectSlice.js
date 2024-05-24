@@ -9,7 +9,7 @@ export const getProducts = createAsyncThunk('products/getProducts', async (_,thu
 
   try {
     // const response = await axios.get(`http://localhost:1337/api/products?pagination[page]=${page}&pagination[pageSize]=${pageSize}&populate=*`);
-    const response = await axios.get(`http://localhost:1337/api/products?populate=*`);
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}products?populate=*`);
   return response.data;
 } catch (error) {
     console.log("Error in data loading",error.message);
@@ -24,7 +24,7 @@ export const getSingleProduct = createAsyncThunk("products/getSingleProduct",
 async(id,thunkAPI)=>{
     const {rejectWithValue} =thunkAPI;
     try {
-        const response = await fetch(`http://localhost:1337/api/products/${id}?populate=*`)
+        const response = await fetch(`${process.env.REACT_APP_API_URL}products/${id}?populate=*`)
         const data = await response.json();
         return data;
     } catch (error) {
@@ -36,7 +36,7 @@ export const filterProducts = createAsyncThunk("products/filterProducts",
 async(filter,thunkAPI)=>{
     const {rejectWithValue} =thunkAPI;
     try {
-        const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[categroys][id][$eq]=${filter}`)
+        const response = await fetch(`${process.env.REACT_APP_API_URL}products?populate=*&filters[categroys][id][$eq]=${filter}`)
         const data = await response.json();
         return data;
     } catch (error) {
@@ -52,7 +52,7 @@ async(filter,thunkAPI)=>{
  async(type,thunkAPI)=>{
      const {rejectWithValue} =thunkAPI;
      try {
-         const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
+         const response = await fetch(`${process.env.REACT_APP_API_URL}products?populate=*&filters[type][$eq]=${type}`)
          const data = await response.json();
          return data;
      } catch (error) {
@@ -66,7 +66,7 @@ async(filter,thunkAPI)=>{
  async(type,thunkAPI)=>{
      const {rejectWithValue} =thunkAPI;
      try {
-         const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
+         const response = await fetch(`${process.env.REACT_APP_API_URL}products?populate=*&filters[type][$eq]=${type}`)
          const data = await response.json();
          return data;
      } catch (error) {
@@ -79,7 +79,7 @@ async(filter,thunkAPI)=>{
   async(type,thunkAPI)=>{
       const {rejectWithValue} =thunkAPI;
       try {
-          const response = await fetch(`http://localhost:1337/api/products?populate=*&filters[type][$eq]=${type}`)
+          const response = await fetch(`${process.env.REACT_APP_API_URL}products?populate=*&filters[type][$eq]=${type}`)
           const data = await response.json();
           return data;
       } catch (error) {
