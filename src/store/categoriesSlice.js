@@ -9,7 +9,7 @@ export const getCategories = createAsyncThunk("categories/getCategories",
 async(_,thunkAPI)=>{
     const {rejectWithValue} = thunkAPI;
     try {
-        const response = await fetch("http://localhost:1337/api/categroys?populate=*")
+        const response = await fetch(`${process.env.REACT_APP_API_URL}categroys?populate=*`)
         const data = await response.json();
         return data;
     } catch (error) {

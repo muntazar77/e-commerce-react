@@ -25,6 +25,7 @@ const Checkout = () => {
 
   const totalPrice = cartProductIds.reduce(
     (price, item) => price + item.attributes.price,
+    
     0
   );
 
@@ -60,7 +61,7 @@ const Checkout = () => {
                             <tr>
                               <td>
                                 <img
-                                  src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
+                                  src={`${process.env.REACT_APP_URL}${item.attributes.image.data.attributes.url}`}
                                   alt="product"
                                   width={90}
                                   height={100}
@@ -133,7 +134,7 @@ const Checkout = () => {
                     <span>Total</span>
                     <h2 className="font-bold">
                       {/* $390,00 */}
-                      {console.log(totalPrice)}
+                    
                       {totalPrice.toFixed(2)}
                     </h2>
 

@@ -18,6 +18,9 @@
 .env.test.local
 .env.production.local
 
+# back-end file
+/backend
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
