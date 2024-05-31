@@ -12,6 +12,7 @@
 - react-responsive-carousel
 - Boostrap
 - fontawesome
+- Strapi Api as backend
 
 
 
