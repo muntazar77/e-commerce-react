@@ -12,7 +12,7 @@
 - react-responsive-carousel
 - Boostrap
 - fontawesome
-- Neumorphism Design
+
 
 
 
